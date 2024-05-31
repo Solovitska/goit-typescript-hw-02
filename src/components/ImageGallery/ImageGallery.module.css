@@ -1,0 +1,15 @@
+.item {
+  height: 390px;
+  width: 390px;
+}
+.item:hover {
+  box-shadow: 0 0 10px 10px rgb(90, 158, 111);
+}
+.list {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
