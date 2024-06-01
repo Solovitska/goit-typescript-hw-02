@@ -1,7 +1,14 @@
 import ReactModal from "react-modal";
 import css from "./ImageModal.module.css";
 
-const ImageModal = ({ modal, onClose, url, alt, author, likes, description }) => {
+type Props = {
+  modal: boolean;
+  onClose: () => void;
+  url: string;
+  alt: string;
+};
+
+const ImageModal: React.FC<Props> = ({ modal, onClose, url, alt }: Props) => {
   return (
     <div>
       <ReactModal
@@ -13,7 +20,7 @@ const ImageModal = ({ modal, onClose, url, alt, author, likes, description }) =>
         overlayClassName={css.overlay}
         className={css.modal}
       >
-        <img className={css.img} src={url} alt={alt} width={1040} />
+        <img className={css.img} src={url} alt={alt} width={1080} />
       </ReactModal>
     </div>
   );

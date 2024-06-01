@@ -1,13 +1,13 @@
 .item {
   height: 390px;
-  width: 390px;
+  width: 360px;
 }
 .item:hover {
-  box-shadow: 0 0 10px 10px rgb(90, 158, 111);
+  box-shadow: 0 0 8px 8px LightSteelBlue;
 }
 .list {
   display: flex;
-  gap: 20px;
+  gap: 23px;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;

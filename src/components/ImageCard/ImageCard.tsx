@@ -2,9 +2,15 @@ import { FcLikePlaceholder } from "react-icons/fc";
 import { SlLocationPin } from "react-icons/sl";
 import { MdOutlineDescription } from "react-icons/md";
 import { AiOutlineUser } from "react-icons/ai";
+import { APIresults } from "../../services-app";
 import css from "./ImageCard.module.css";
 
-const ImageCard = ({
+type Props = {
+  item: APIresults;
+  onOpen: (imgUrl: string, imgAlt: string) => void;
+};
+
+const ImageCard: React.FC<Props> = ({
   item: {
     alt_description: alt,
     urls: { small, regular },
@@ -12,7 +18,7 @@ const ImageCard = ({
     likes,
   },
   onOpen,
-}) => {
+}: Props) => {
   return (
     <div className={css.item}>
       <img

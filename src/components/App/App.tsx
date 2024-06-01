@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { fetchPhotos } from "../../services-app";
+import { APIresults, fetchPhotos } from "../../services-app";
 import css from "./App.module.css";
 import SearchBar from "../SearchBar/SearchBar";
 import ImageGallery from "../ImageGallery/ImageGallery";
@@ -8,8 +8,8 @@ import ErrorMessage from "../ErrorMessage/ErrorMessage";
 import LoadMoreBtn from "../LoadMoreBtn/LoadMoreBtn";
 import ImageModal from "../ImageModal/ImageModal";
 
-const App = () => {
-  const [images, setImages] = useState([]);
+const App: React.FC = () => {
+  const [images, setImages] = useState<APIresults[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(false);
   const [showBtn, setShowBtn] = useState(false);
@@ -20,23 +20,23 @@ const App = () => {
   const [page, setPage] = useState(1);
   const [query, setQuery] = useState("");
 
-  const handleSearch = (newQuery) => {
+  const handleSearch = (newQuery: string): void => {
     setQuery(newQuery);
     setImages([]);
     setPage(1);
   };
 
-  const handleLoadMore = () => {
+  const handleLoadMore = (): void => {
     setPage(page + 1);
   };
 
-  const handleOpenModal = (imgUrl, imgAlt) => {
+  const handleOpenModal = (imgUrl: string, imgAlt: string): void => {
     setShowModal(true);
     setModalUrl(imgUrl);
     setModalAlt(imgAlt);
   };
 
-  const handleCloseModal = () => {
+  const handleCloseModal = (): void => {
     setShowModal(false);
   };
 
@@ -45,15 +45,17 @@ const App = () => {
       return;
     }
 
-    async function getImages() {
+    async function getImages(): Promise<void> {
       try {
         setError(false);
         setIsLoading(true);
-        const data = await fetchPhotos(query, page);
-        setShowBtn(data.total_pages && data.total_pages !== page);
-        setImages((prevImages) => {
-          return [...prevImages, ...data.results];
-        });
+        const data: APIresults[] = await fetchPhotos(query, page);
+        if (data.length > 0) {
+          setShowBtn(true);
+          setImages((prevImages) => {
+            return [...prevImages, ...data];
+          });
+        }
       } catch (error) {
         setError(true);
       } finally {
@@ -89,3 +91,4 @@ const App = () => {
 };
 
 export default App;
+

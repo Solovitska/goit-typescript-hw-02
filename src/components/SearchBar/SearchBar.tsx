@@ -3,13 +3,16 @@ import css from "./SearchBar.module.css";
 import { AiFillWarning } from "react-icons/ai";
 import { Formik, Form, Field } from "formik";
 
-const SearchBar = ({ onSubmit }) => {
-  const handleSubmit = (values, actions) => {
+type Props = {
+  onSubmit: (newQuery: string) => void;
+};
+
+const SearchBar: React.FC<Props> = ({ onSubmit }: Props) => {
+  const handleSubmit = (values: { query: string }, actions: any) => {
     if (values.query.trim() === "") {
-      toast("Please, enter your query", {
+      toast("Please enter a request", {
         duration: 3000,
-        icon: <AiFillWarning color="red" size={28} />
-        ,
+        icon: < AiFillWarning color="red" size={28} />,
       });
     }
     onSubmit(values.query);

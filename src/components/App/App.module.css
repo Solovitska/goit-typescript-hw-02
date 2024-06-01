@@ -4,17 +4,17 @@ body {
 }
 
 .container {
-  max-width: 1280px;
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 20px 20px;
+  padding: 20px 30px;
 }
 
 html::-webkit-scrollbar {
-  width: 10px;
-  background: rgb(158, 177, 137);
+  width: 8px;
+  background: lightgray;
 }
 
 html::-webkit-scrollbar-thumb {
-  background: rgb(16, 87, 29);
+  background: SteelBlue;
   border-radius: 50px;
 }
